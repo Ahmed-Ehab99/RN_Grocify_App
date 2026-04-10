@@ -1,6 +1,5 @@
 import { Show, useClerk, useUser } from "@clerk/expo";
-import { UserButton, UserProfileView } from "@clerk/expo/native";
-import { Link } from "expo-router";
+import { UserButton } from "@clerk/expo/native";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
@@ -26,8 +25,6 @@ export default function HomeScreen() {
         >
           <UserButton />
         </View>
-
-        <UserProfileView style={{ flex: 1 }} />
       </Show>
     </View>
   );
