@@ -21,6 +21,7 @@ export default function HomeScreen() {
             height: 36,
             borderRadius: 18,
             overflow: "hidden",
+            marginLeft: 10
           }}
         >
           <UserButton />
@@ -33,13 +34,14 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 30,
     paddingTop: 60,
     gap: 16,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
+    color: "#fff"
   },
   button: {
     backgroundColor: "#0a7ea4",
