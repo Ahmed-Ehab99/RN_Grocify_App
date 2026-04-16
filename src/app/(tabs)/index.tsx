@@ -1,57 +1,39 @@
-import { Show, useClerk, useUser } from "@clerk/expo";
-import { UserButton } from "@clerk/expo/native";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import CompletedItems from "@/components/list/CompletedItems";
+import ListHeroCard from "@/components/list/ListHeroCard";
+import PendingItemCard from "@/components/list/PendingItemCard";
+import TabScreenBackground from "@/components/TabScreenBackground";
+import { useGroceryStore } from "@/store/grocery-store";
+import { FlatList, Text, View } from "react-native";
 
 export default function HomeScreen() {
-  const { user } = useUser();
-  const { signOut } = useClerk();
+  const { items } = useGroceryStore();
+  const pendingItems = items.filter((item) => !item.purchased);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome!</Text>
-      <Show when="signed-in">
-        <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
-        <Pressable style={styles.button} onPress={() => signOut()}>
-          <Text style={styles.buttonText}>Sign out</Text>
-        </Pressable>
-
-        <View
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: 18,
-            overflow: "hidden",
-            marginLeft: 10
-          }}
-        >
-          <UserButton />
+    <FlatList
+      className="flex-1 bg-background"
+      showsVerticalScrollIndicator={false}
+      data={pendingItems}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => <PendingItemCard item={item} />}
+      contentContainerStyle={{ padding: 20, gap: 14 }}
+      contentInsetAdjustmentBehavior="automatic"
+      ListHeaderComponent={
+        <View style={{ gap: 14, paddingTop: 20 }}>
+          <TabScreenBackground />
+          <ListHeroCard />
+          <View className="flex-row items-center justify-between px-1">
+            <Text className="text-sm font-semibold uppercase tracking-[1px] text-muted-foreground">
+              Shopping items
+            </Text>
+            <Text className="text-sm text-muted-foreground">
+              {pendingItems.length} active
+            </Text>
+          </View>
         </View>
-      </Show>
-    </View>
+      }
+      ListEmptyComponent={<Text>No items found</Text>} // TODO: Make ui for this case
+      ListFooterComponent={<CompletedItems />}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 30,
-    paddingTop: 60,
-    gap: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#fff"
-  },
-  button: {
-    backgroundColor: "#0a7ea4",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "600",
-  },
-});
