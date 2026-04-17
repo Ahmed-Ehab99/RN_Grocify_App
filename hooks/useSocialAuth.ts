@@ -12,7 +12,7 @@ const useSocialAuth = () => {
   const { startSSOFlow } = useSSO();
 
   const handleSocialAuth = async (strategy: SocialStrategy) => {
-    if (loadingStrategy) return; // Guard againts concurrent flos. If one social button is loading and user click on another button, don't make anything
+    if (loadingStrategy) return; // Guard againts concurrent flow. If one social button is loading and user click on another button, don't make anything
     setLoadingStrategy(strategy);
 
     try {

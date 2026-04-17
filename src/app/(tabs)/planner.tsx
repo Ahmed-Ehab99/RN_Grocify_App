@@ -24,7 +24,7 @@ const PlannerScreen = () => {
       bottomOffset={80}
       contentContainerStyle={{ padding: 20, gap: 14 }}
       showsVerticalScrollIndicator={false}
-      className="flex-1 bg-background py-4"
+      className="flex-1 bg-background py-9"
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
     >

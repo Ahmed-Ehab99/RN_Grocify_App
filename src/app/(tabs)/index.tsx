@@ -19,7 +19,7 @@ export default function HomeScreen() {
       contentContainerStyle={{ padding: 20, gap: 14 }}
       contentInsetAdjustmentBehavior="automatic"
       ListHeaderComponent={
-        <View style={{ gap: 14, paddingTop: 20 }}>
+        <View className="gap-3.5 pt-9">
           <TabScreenBackground />
           <ListHeroCard />
           <View className="flex-row items-center justify-between px-1">
