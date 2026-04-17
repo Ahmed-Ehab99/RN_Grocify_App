@@ -2,6 +2,7 @@ import ClearCompletedButton from "@/components/insights/ClearCompletedButton";
 import InsightsCategorySection from "@/components/insights/InsightsCategorySection";
 import InsightsPrioritySection from "@/components/insights/InsightsPrioritySection";
 import InsightsStatsSection from "@/components/insights/InsightsStatsSection";
+import SentryFeedbackButton from "@/components/insights/SentryFeedbackButton";
 import UserProfile from "@/components/insights/UserProfile";
 import TabScreenBackground from "@/components/TabScreenBackground";
 import React from "react";
@@ -24,6 +25,8 @@ const InsightsScreen = () => {
         <InsightsPrioritySection />
         <ClearCompletedButton />
       </ScrollView>
+
+      <SentryFeedbackButton />
     </>
   );
 };
